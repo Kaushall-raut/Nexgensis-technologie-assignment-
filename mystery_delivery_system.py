@@ -58,4 +58,63 @@ def package_assigner(data):    # function for assigning package
 
 agent_assign=package_assigner(data)
 
-print(agent_assign)
+
+def agent_current_location(data,agent_assign):    # function for checking agent current location after or before delivery
+   current_location={}
+   agent_statistic={}
+   best_agent = None
+   best_efficiency = float("inf")
+
+   for agent in data["agents"]:
+      current_location[agent["id"]]=agent["location"]
+      agent_statistic[agent["id"]] = {
+        "packages_delivered": 0,
+        "total_distance": 0
+    }
+#    print(current_location)
+
+   for agent_id,package_ids in agent_assign.items():
+      for package_id in package_ids:
+         
+         for package in data["packages"]:
+
+            if package["id"]==package_id:
+            #    print(agent_id,package)
+               warehouse_id=package["warehouse_id"]
+
+               warehouse_location=get_warehouse_location(warehouse_id,data["warehouses"])
+
+               agent_current_location=current_location[agent_id]
+
+               distance_to_warehouse=euclidean_distance(agent_current_location,warehouse_location)
+
+               destination = package["destination"]
+
+               distance_to_destination = euclidean_distance( warehouse_location, destination)
+            #    print(agent_id,distance_to_warehouse)
+            # print(agent_id, distance_to_warehouse, distance_to_destination)
+            total_distance=distance_to_warehouse+distance_to_destination
+
+            agent_statistic[agent_id]["packages_delivered"]+=1
+            agent_statistic[agent_id]["total_distance"]+=total_distance
+
+            current_location[agent_id]=package["destination"]
+   for agent_id,details in agent_statistic.items():
+      packages = details["packages_delivered"]
+      distance = details["total_distance"]
+
+      if packages>0:
+         efficiency=distance/packages
+      else :
+         efficiency=0
+      details["efficiency"]=efficiency
+
+      if efficiency<best_efficiency:
+         best_efficiency=efficiency
+         best_agent=agent_id
+   print(best_agent)
+   return agent_statistic
+
+
+stat=agent_current_location(data,agent_assign)
+print(stat)

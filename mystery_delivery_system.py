@@ -16,7 +16,7 @@ def euclidean_distance(point1,point2):
 
 
 
-def nearest_Agent_finder(warehouse_location,agent):
+def nearest_Agent_finder(warehouse_location,agent):   # function agent nearest to the warehouse location
    shortest_distance=float("inf")       # assigning shortest distance infinity
    nearest_agent=None                       
    for i  in agent:
@@ -31,3 +31,23 @@ def nearest_Agent_finder(warehouse_location,agent):
 nearest_Agent_finder([50,75],data["agents"])
 
 
+def get_warehouse_location(warehouse_id,warehouses):  #function for getting warehouse location
+   
+   for i in warehouses:
+    if warehouse_id.upper()==i["id"]:
+      return i["location"]
+
+
+# location=get_warehouse_location("w2",data["warehouses"])
+
+def package_assigner(data):    # function for assigning package
+    
+    for package in data["packages"]:
+       warehouse_id=package["warehouse_id"]
+
+       warehouse_location=get_warehouse_location(warehouse_id,data["warehouses"])
+       nearest_Agent=nearest_Agent_finder(warehouse_location,data["agents"])
+       print(nearest_Agent)
+
+
+package_assigner(data)

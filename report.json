@@ -1,18 +1,28 @@
 {
     "A1": {
-        "packages_delivered": 2,
-        "total_distance": 178.10099506775617,
-        "efficiency": 89.05049753387809
+        "packages_delivered": 4,
+        "total_distance": 75.83280967748159,
+        "efficiency": 18.958202419370398
     },
     "A2": {
-        "packages_delivered": 2,
-        "total_distance": 152.81331624136044,
-        "efficiency": 76.40665812068022
+        "packages_delivered": 0,
+        "total_distance": 0,
+        "efficiency": 0
     },
     "A3": {
-        "packages_delivered": 1,
-        "total_distance": 78.66017312824724,
-        "efficiency": 78.66017312824724
+        "packages_delivered": 6,
+        "total_distance": 142.2106567735201,
+        "efficiency": 23.701776128920017
     },
-    "best_Agent": "A2"
+    "A4": {
+        "packages_delivered": 0,
+        "total_distance": 0,
+        "efficiency": 0
+    },
+    "A5": {
+        "packages_delivered": 2,
+        "total_distance": 61.255609915148234,
+        "efficiency": 30.627804957574117
+    },
+    "best_agent": "A1"
 }

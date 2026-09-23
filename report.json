@@ -1,0 +1,18 @@
+{
+    "A1": {
+        "packages_delivered": 2,
+        "total_distance": 178.10099506775617,
+        "efficiency": 89.05049753387809
+    },
+    "A2": {
+        "packages_delivered": 2,
+        "total_distance": 152.81331624136044,
+        "efficiency": 76.40665812068022
+    },
+    "A3": {
+        "packages_delivered": 1,
+        "total_distance": 78.66017312824724,
+        "efficiency": 78.66017312824724
+    },
+    "best_Agent": "A2"
+}

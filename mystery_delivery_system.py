@@ -57,6 +57,7 @@ def package_assigner(data):    # function for assigning package
 
 
 agent_assign=package_assigner(data)
+print(agent_assign)
 
 
 def agent_current_location(data,agent_assign):    # function for checking agent current location after or before delivery
@@ -93,10 +94,10 @@ def agent_current_location(data,agent_assign):    # function for checking agent 
                distance_to_destination = euclidean_distance( warehouse_location, destination)
             #    print(agent_id,distance_to_warehouse)
             # print(agent_id, distance_to_warehouse, distance_to_destination)
-            total_distance=distance_to_warehouse+distance_to_destination
+               total_distance=distance_to_warehouse+distance_to_destination
 
-            agent_statistic[agent_id]["packages_delivered"]+=1
-            agent_statistic[agent_id]["total_distance"]+=total_distance
+               agent_statistic[agent_id]["packages_delivered"]+=1
+               agent_statistic[agent_id]["total_distance"]+=total_distance
 
             current_location[agent_id]=package["destination"]
    for agent_id,details in agent_statistic.items():
@@ -112,9 +113,13 @@ def agent_current_location(data,agent_assign):    # function for checking agent 
       if efficiency<best_efficiency:
          best_efficiency=efficiency
          best_agent=agent_id
-   print(best_agent)
+  
+   agent_statistic["best_Agent"]=best_agent 
    return agent_statistic
 
 
-stat=agent_current_location(data,agent_assign)
-print(stat)
+report=agent_current_location(data,agent_assign)
+
+
+with open("report.json", "w") as file:
+    json.dump(report, file, indent=4)

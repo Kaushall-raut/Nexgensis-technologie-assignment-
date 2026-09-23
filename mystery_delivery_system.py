@@ -41,13 +41,21 @@ def get_warehouse_location(warehouse_id,warehouses):  #function for getting ware
 # location=get_warehouse_location("w2",data["warehouses"])
 
 def package_assigner(data):    # function for assigning package
-    
+    agent_assign={}
     for package in data["packages"]:
        warehouse_id=package["warehouse_id"]
 
        warehouse_location=get_warehouse_location(warehouse_id,data["warehouses"])
        nearest_Agent=nearest_Agent_finder(warehouse_location,data["agents"])
-       print(nearest_Agent)
+
+       if nearest_Agent not in agent_assign:
+          agent_assign[nearest_Agent]=[]
+       agent_assign[nearest_Agent].append(package["id"])
+    return agent_assign
 
 
-package_assigner(data)
+
+
+agent_assign=package_assigner(data)
+
+print(agent_assign)

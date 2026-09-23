@@ -13,4 +13,21 @@ def euclidean_distance(point1,point2):
     distance=math.sqrt(((point1[0]-point2[0])**2) + ((point1[1]-point2[1])**2) )
     return distance
 
-print(euclidean_distance([5,5],[0,0]))
+
+
+
+def nearest_Agent_finder(warehouse_location,agent):
+   shortest_distance=float("inf")       # assigning shortest distance infinity
+   nearest_agent=None                       
+   for i  in agent:
+   
+    distance=euclidean_distance(i["location"],warehouse_location)      #calculating euclidean distance of each agent
+    if distance<shortest_distance:
+       shortest_distance=distance
+       nearest_agent=i["id"]
+   return nearest_agent
+                                                        
+
+nearest_Agent_finder([50,75],data["agents"])
+
+
